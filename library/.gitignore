@@ -1,0 +1,12 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Maven
+target/
+
+# Environment / secrets
+application.properties
+
+# Operating system
+.DS_Store
