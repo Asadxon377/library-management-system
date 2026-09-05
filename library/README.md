@@ -2,6 +2,9 @@
 
 A full-stack Library Management System built with Java and Spring Boot. The application allows users to manage books, authors, and categories with role-based access control.
 
+Disclaimer!!!
+Frontend part was done mainly by ai since I'm focusing on backend part. 
+
 ## Features
 
 - Manage books, authors, and categories
