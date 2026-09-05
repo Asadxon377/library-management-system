@@ -57,42 +57,66 @@ public class DemoController {
         return "categories";
     }
 
-
     @GetMapping("/authors/new")
-    public String newAuthor(Model model) {
-        model.addAttribute("author", new AuthorRequestDTO(""));
+public String newAuthor(Model model) {
+
+    model.addAttribute("author", new AuthorRequestDTO(""));
+    model.addAttribute("formAction", "/authors/save");
+    model.addAttribute("isUpdate", false);
+
+    return "add-author";
+}
+
+
+@PostMapping("/authors/save")
+public String saveAuthor(
+        @Valid @ModelAttribute("author") AuthorRequestDTO authorRequestDTO,
+        BindingResult bindingResult,
+        Model model) {
+
+    if (bindingResult.hasErrors()) {
+
+        model.addAttribute("formAction", "/authors/save");
+        model.addAttribute("isUpdate", false);
 
         return "add-author";
     }
 
+    authorService.addAuthor(authorRequestDTO);
 
-    @PostMapping("/authors/save")
-    public String saveAuthor(@Valid @ModelAttribute("author") AuthorRequestDTO authorRequestDTO,
-                             BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "add-author";
-        }
-        authorService.addAuthor(authorRequestDTO);
-        return "redirect:/authors";
-    }
+    return "redirect:/authors";
+}
 
 
-    @GetMapping("/categories/new")
-    public String newCategory(Model model) {
-        model.addAttribute("category", new CategoryRequestDTO(""));
+@GetMapping("/categories/new")
+public String newCategory(Model model) {
+
+    model.addAttribute("category", new CategoryRequestDTO(""));
+    model.addAttribute("formAction", "/categories/save");
+    model.addAttribute("isUpdate", false);
+
+    return "add-category";
+}
+
+
+@PostMapping("/categories/save")
+public String saveCategory(
+        @Valid @ModelAttribute("category") CategoryRequestDTO categoryRequestDTO,
+        BindingResult bindingResult,
+        Model model) {
+
+    if (bindingResult.hasErrors()) {
+
+        model.addAttribute("formAction", "/categories/save");
+        model.addAttribute("isUpdate", false);
 
         return "add-category";
     }
 
+    categoryService.addCategory(categoryRequestDTO);
 
-    @PostMapping("/categories/save")
-    public String saveCategory(@Valid @ModelAttribute("category") CategoryRequestDTO categoryRequestDTO, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "add-category";
-        }
-        categoryService.addCategory(categoryRequestDTO);
-        return "redirect:/categories";
-    }
+    return "redirect:/categories";
+}
 
 
     @GetMapping("/books/new")
