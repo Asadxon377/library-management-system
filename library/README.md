@@ -5,6 +5,8 @@ A full-stack Library Management System built with Java and Spring Boot. The appl
 Disclaimer!!!
 Frontend part was done mainly by ai since I'm focusing on backend part. 
 
+I named the project's domain name library.gpt.com because it was initially given to me as a challenge task by gpt.
+
 ## Features
 
 - Manage books, authors, and categories
